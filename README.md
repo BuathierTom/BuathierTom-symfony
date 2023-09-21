@@ -1,49 +1,34 @@
-# Symfony Docker
-
-<!-- docker compose build --no-cache -->
-<!-- docker compose up --pull --wait -->
-
+# Docker Symfony
 
 A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework, with full [HTTP/2](https://symfony.com/doc/current/weblink.html), HTTP/3 and HTTPS support.
 
-![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
-
 ## Getting Started
 
-1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
-2. Run `docker compose build --no-cache` to build fresh images / Pour installer les dépendences
-3. Run `docker compose up --pull --wait` to start the project / Démarrer le serveur sur docker
-4. Open `https://localhost:8080` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334) / Ce lien fonctionne (J'ai changer le port de `8000` à `8080`)
+1. Install **Docker Compose**
+2. Run `docker compose build --no-cache` to build fresh images *Pour installer les dépendences*
+3. Run `docker compose up --pull --wait` to start the project *Démarrer le serveur sur docker*
+4. Open `https://localhost:8080` in your web browser / *Ce lien fonctionne (J'ai changer le port de `8000` à `8080`)*
 5. Run `docker compose down --remove-orphans` to stop the Docker containers.
 
 ## Features
 
-* Production, development and CI ready
-* [Installation of extra Docker Compose services](docs/extra-services.md) with Symfony Flex
-* Automatic HTTPS (in dev and in prod!)
-* HTTP/2, HTTP/3 and [Preload](https://symfony.com/doc/current/web_link.html) support
-* Built-in [Mercure](https://symfony.com/doc/current/mercure.html) hub
-* [Vulcain](https://vulcain.rocks) support
-* Native [XDebug](docs/xdebug.md) integration
-* Just 2 services (PHP FPM and Caddy server)
-* Super-readable configuration
+* Création d'un article avec le framework Symfony
+* Utilisation d'un template du site [startbootstrap](https://startbootstrap.com/templates) pour un dashboard
+* Création d'une entity Article avec comme colonnes : 
+    * `**id:** int, **titre:** string, **texte:** text, **etat:** bool, **date:** DateImmutable`
+* Fonctions :
+    * Creation d'Article
+    * Voir Article (En prenant en paramêtre son id)
+    * *A venir*
 
-**Enjoy!**
 
-## Docs
+## Documentation
 
-1. [Build options](docs/build.md)
-2. [Using Symfony Docker with an existing project](docs/existing-project.md)
-3. [Support for extra services](docs/extra-services.md)
-4. [Deploying in production](docs/production.md)
-5. [Debugging with Xdebug](docs/xdebug.md)
-6. [TLS Certificates](docs/tls.md)
-7. [Using a Makefile](docs/makefile.md)
-8. [Troubleshooting](docs/troubleshooting.md)
+- [Documentation symfony](https://symfony.com/doc/current/doctrine.html)
 
 ## License
 
-Symfony Docker is available under the MIT License.
+Docker Symfony est disponible sous la licence MIT.
 
 ## Credits
 
