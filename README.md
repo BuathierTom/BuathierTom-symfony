@@ -15,7 +15,7 @@ A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony
 * Création d'un article avec le framework Symfony
 * Utilisation d'un template du site [startbootstrap](https://startbootstrap.com/templates) pour un dashboard
 * Création d'une entity Article avec comme colonnes : 
-    * `**id:** int, **titre:** string, **texte:** text, **etat:** bool, **date:** DateImmutable`
+    * `id: int, titre: string, texte: text, etat: bool, date: DateImmutable`
 * Fonctions :
     * Creation d'Article
     * Voir Article (En prenant en paramêtre son id)
