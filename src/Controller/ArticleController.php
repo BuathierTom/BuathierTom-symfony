@@ -6,6 +6,7 @@ use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 use App\Entity\Article;
 use DateTimeImmutable;
@@ -22,6 +23,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/cree', name: 'app_article_cree')]
     public function creeArticle(EntityManagerInterface $entityManager): Response
     {

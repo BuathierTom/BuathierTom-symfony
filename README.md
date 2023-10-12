@@ -10,6 +10,8 @@ A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony
 4. Open `https://localhost:8080` in your web browser / *Ce lien fonctionne (J'ai changer le port de `8000` à `8080`)*
 5. Run `docker compose down --remove-orphans` to stop the Docker containers.
 
+<!-- TON MDP EST DANS LE .ENV -->
+
 ## Features
 
 * Création d'un article avec le framework Symfony
