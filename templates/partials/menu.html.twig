@@ -62,8 +62,13 @@
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            Start Bootstrap
+            <div class="small">Connecté en tant que:</div>
+              {# Si on est connecter on affiche l'addresse mail sinon on met un lien vers /login #}
+                {% if app.user %}
+                    {{ app.user.email }}
+                {% else %}
+                    <a href="{{ path('app_login') }}">Connexion</a>
+                {% endif %}
         </div>
     </nav>
 </div>

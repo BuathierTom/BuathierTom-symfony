@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ article.titre }} {% endblock %}
+
+
+{% block main %}
+
+<h1 class="mt-4">Article</h1>
+    {# Mettre l'article pas dans une card #}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h2 class="card-title">{{ article.titre }}</h2>
+            <p class="card-text">{{ article.texte }}</p>
+            <a href="{{ path('articles_list') }}" class="btn btn-primary">Retour</a>
+        </div>
+        <div class="card-footer text-muted">
+            {{ article.date|date('d/m/Y') }}
+        </div>
+    </div>
+    
+
+
+{% endblock %}
