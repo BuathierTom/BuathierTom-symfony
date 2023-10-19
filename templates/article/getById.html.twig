@@ -12,6 +12,8 @@
             <h2 class="card-title">{{ article.titre }}</h2>
             <p class="card-text">{{ article.texte }}</p>
             <a href="{{ path('articles_list') }}" class="btn btn-primary">Retour</a>
+            <a href="{{ path('article_update', {'id': article.id}) }}" class="btn btn-warning">Modifier</a>
+            <a href="{{ path('article_delete', {'id': article.id}) }}" class="btn btn-danger">Supprimer</a>
         </div>
         <div class="card-footer text-muted">
             {{ article.date|date('d/m/Y') }}

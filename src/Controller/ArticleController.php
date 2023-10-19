@@ -20,19 +20,24 @@ use Doctrine\ORM\EntityManagerInterface;
 #[Route('/article')]
 class ArticleController extends AbstractController
 {
-    #[Route('/', name: 'app_article')]
-    public function index(): Response
+    #[Route('/', name: 'articles_list')]
+    public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('article/index.html.twig', [
-            'controller_name' => 'ArticleController',
+        $articles = $articleRepository->findAll();
+
+        return $this->render('article/getAll.html.twig', [
+            'articles' => $articles,
         ]);
     }
 
     #[IsGranted('ROLE_USER')]
     #[Route('/cree', name: 'app_article_cree')]
-    public function creeArticle(Request $request, EntityManagerInterface $entityManager): Response
+    public function creeArticle(Request $request, EntityManagerInterface $entityManager, ArticleRepository $articleRepository): Response
     {
         $article = new Article();
+
+        // Pour le menu
+        $articles = $articleRepository->findAll();
 
         // On ajoute la date généree automatiquement
         $article->setDate(new DateTimeImmutable());
@@ -51,15 +56,19 @@ class ArticleController extends AbstractController
 
         return $this->render('article/creeArticle.html.twig', [
             'form' => $form->createView(),
+            'articles' => $articles,
         ]);
     }
 
     #[IsGranted('ROLE_USER')]
     #[Route('/voir/{id}', name: 'article_show')]
-    public function show(ArticleRepository $articleRepository, int $id): Response
+    public function showByID(ArticleRepository $articleRepository, int $id): Response
     {
         $article = $articleRepository->find($id);
         // dd($article);
+
+        // Pour le menu
+        $articles = $articleRepository->findAll();
 
         if (!$article) {
             throw $this->createNotFoundException(
@@ -69,22 +78,62 @@ class ArticleController extends AbstractController
 
         return $this->render('article/getById.html.twig', [
             'article' => $article,
+            'articles' => $articles,
         ]);
 
         // return new Response('Regarde cet article : '.$article->getTitre());
     }
 
     #[IsGranted('ROLE_USER')]
-    #[Route('/voir', name: 'articles_list')]
-    public function list(ArticleRepository $articleRepository): Response
+    #[Route('/modifier/{id}', name: 'article_update')]
+    public function update(ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request, int $id): Response
     {
+        $article = $articleRepository->find($id);
+
+        // Pour le menu
         $articles = $articleRepository->findAll();
 
-        return $this->render('article/getAll.html.twig', [
+        if (!$article) {
+            throw $this->createNotFoundException(
+                "Aucun article à été trouver avec l'id ".$id
+            );
+        }
+
+        $form = $this->createForm(ArticleFormType::class, $article);
+
+        $form->handleRequest($request);
+
+        // On récupère les données du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($article);
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('articles_list');
+        }
+
+        return $this->render('article/update.html.twig', [
+            'form' => $form->createView(),
+            'article' => $article,
             'articles' => $articles,
         ]);
-
     }
 
+    #[IsGranted('ROLE_USER')]
+    #[Route('/delete/{id}', name: 'article_delete')]
+    public function delete(ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request, int $id): Response
+    {
+        $article = $articleRepository->find($id);
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                "Aucun article à été trouver avec l'id ".$id
+            );
+        }
+
+        $entityManager->remove($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('articles_list');
+    }
 }
 
