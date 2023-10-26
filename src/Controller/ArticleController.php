@@ -50,7 +50,19 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($article);
             $entityManager->flush();
-    
+
+            $imgFile = $form->get('imageFileName')->getData();  
+            // dd($imgFile);
+            if ($imgFile) {
+                // On change le nom du fichier en article + id.jpg
+                $newFileName = 'article'.$article->getId().'.jpg';
+                // On déplace le fichier dans le dossier public/images
+                $imgFile->move(
+                    $this->getParameter('imageFileName_directory'),
+                    $newFileName
+                );
+
+            }
             return $this->redirectToRoute('articles_list');
         }
 

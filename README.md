@@ -19,9 +19,19 @@ A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony
 * Création d'une entity Article avec comme colonnes : 
     * `id: int, titre: string, texte: text, etat: bool, date: DateImmutable`
 * Fonctions :
-    * Creation d'Article
-    * Voir Article (En prenant en paramêtre son id)
-    * *A venir*
+    * Obligatoires : 
+        * Creation d'Article (route: "article/cree")
+        * Voir un Article en detail (route: "article/voir/{id}")
+        * Update d'un Article (route: "article/modifier/{id}")
+        * Suppression d'un Article (route: "article/delete/{id}")
+
+    * Facultatifs : 
+        * Voir tous les Articles (route: "article/")
+        * Dynamisation du site (nav, menu, footer)
+        * Lors de création d'un article, ajout d'une image (route: "article/cree")
+        * Login/Logout redirection dans les yaml
+        * Login/Logout dynamique dans le bonhomme dans le nav
+        * Listes des articles dans le menu sur le coter
 
 
 ## Documentation

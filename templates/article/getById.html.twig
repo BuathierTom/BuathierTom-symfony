@@ -6,9 +6,9 @@
 {% block main %}
 
 <h1 class="mt-4">Article</h1>
-    {# Mettre l'article pas dans une card #}
     <div class="card mb-3">
         <div class="card-body">
+            <img src="{{ asset('uploads/imageFileName/article' ~ article.id ~ '.jpg' ) }}" class="card-img-top" alt="{{ article.titre }}" style="width: 100px;">
             <h2 class="card-title">{{ article.titre }}</h2>
             <p class="card-text">{{ article.texte }}</p>
             <a href="{{ path('articles_list') }}" class="btn btn-primary">Retour</a>
