@@ -21,7 +21,7 @@ A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony
 * Fonctions :
     * Obligatoires : 
         * Creation d'Article (route: "article/cree")
-        * Voir un Article en detail (route: "article/voir/{id}")
+        * Voir un Article en detail (route: "article/voir/{id}") (Pour avoir toutes les commandes, on est obliger d'être sur cette page en fonction de l'ID)
         * Update d'un Article (route: "article/modifier/{id}")
         * Suppression d'un Article (route: "article/delete/{id}")
 
